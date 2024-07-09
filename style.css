@@ -1,0 +1,102 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Baskervville+SC&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+.banner{
+  width: 100%;
+  height: 100vh;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(45deg, rgba(145, 51, 177, 0.4), rgba(19, 241, 19, 0.2));
+}
+.banner .slider{
+  position: absolute;
+  width: 150px;
+  height: 200px;
+  top: 10%;
+  left: calc(50% - 75px);
+  transform-style: preserve-3d;
+  transform: perspective(1000px);
+  animation: autoRun 20s linear infinite;
+  z-index: 5;
+}
+@keyframes autoRun{
+  from{
+    transform: perspective(1000px) rotateX(-15deg) rotateY(0deg);
+  }to{
+    transform: perspective(1000px) rotateX(-15deg) rotateY(360deg);
+  }
+}
+.banner .slider .item{
+  position: absolute;
+  inset: 0 0 0 0;
+  transform:
+  rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+  translateZ(400px);
+}
+.banner .slider .item img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+}
+.banner .content{
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1200px, 100vw);
+  height: max-content;
+  padding-bottom: 100px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.banner .content h1{
+  font-family: "Baskervville SC", serif;
+  font-size: 8em;
+  line-height: 1em;
+  font-weight: 100;
+  color: rgb(200, 238, 64);
+  position: relative;
+  left: calc(30% - 180px);
+  -webkit-text-stroke: 0.5px #34b800;
+  color: transparent;
+ }
+.banner .content h1::after{
+  position: absolute;
+  inset: 0 0 0 0;
+  content: attr(data-content);
+  z-index: 2;
+}
+.banner .content .author{
+  font-family: "Poppins", sans-serif;
+  text-align: right;
+  max-width: 200px;
+}
+.banner .content .model{
+  background-image: url(images//9580789_0.webp);
+  width: 120%;
+  height: 350px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-size: auto 130%;
+  background-repeat: no-repeat;
+  background-position: top center;
+  z-index: 0;
+}
+
+@media screen and (min-width:300px) and (max-witdh:500px) {
+  .banner .slider .item{
+    transform: translateZ(200px);
+  }
+  .banner .slider{
+    transform: perspective(50px);
+  }
+}
